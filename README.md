@@ -1,1 +1,3 @@
 # Aryeo-Amenity-Detection
+## All of the useful Code is in the googleVM folder... 
+### This is where you can find our training notebooks, image download notebooks, and  data cleaning scripts. 
