@@ -2,7 +2,7 @@
 The goal of this project is to be able to extract amenity data from household images for our employer [Aryeo](https://www.aryeo.com/). Inspired by AirBnb's [medium article](https://medium.com/airbnb-engineering/amenity-detection-and-beyond-new-frontiers-of-computer-vision-at-airbnb-144a4441b72e) We built an object detection model by utilizing Facebook AI's [Detectron2 Library](https://github.com/facebookresearch/detectron2), and conducted transfer learning on a Retinanet model found in the model zoo library. See the descriptions of our workspace below. Most of our work was conducted in a Google VM Instance, so take a look at that folder. 
 
 ## Parent Directory
-We contain all of our work done in google colab (Before we set up a google cloud virtual machine) 
+The three files found in the parent directory are our initial project notebooks done in Google Colab. (Before we set up a google cloud virtual machine) 
 The Airbnb_Rep.ipynp Notebook is a our first training Notebook of a small model.The Airbnb_rep_Data_cleaning.ipynb shows data cleaning process of changing OpenImages labels to Detectron2 labels. The Detectron2-Small-model_Tutorial.ipynb is the tutiral we followed to learn about how to use Detectron2. 
 
  
@@ -10,10 +10,10 @@ The Airbnb_Rep.ipynp Notebook is a our first training Notebook of a small model.
 This Folder contains all of our Training Notebooks, Data collection notebooks, and data cleaning Scripts.
 
 ### Small Model
-Contains the training notebook and image download NB for our small model, trained on one class of image
+Contains the training notebook and image download NB for our small model, trained on one class of image. (Coffeemaker)
 
 ### Medium Test Model
-Contains the experimentaton notebook, in which we tested 7 different pretrained models to determine the one we would conduct transfer learning on.
+Contains the experimentaton notebook, in which we tested 7 different pretrained models to determine the one we would conduct transfer learning on. We found that the Retinanet_R_101_3x model was the best.
 
 ### bigDogModel
 This folder contains the image download and training notebooks similar for all 30 classes of amenities. The Save_Predictions notebook is used to save predictions from a model into a csv file that is used for inferencing. It also includes a visualization notebook which visualizes predictions that we have passed through our ensembling script... (see next later section on Ensembling)
@@ -34,3 +34,5 @@ Our way of inferencing on the model. Mean average precision calculation. This fo
 ### Deploy
 This folder contains our final demo code. We utilized streamlit to build a user interface to interact with our system. app.py creates the front end and then pulls from appMain.py which actually passes the input image through our system and returns an output data and image with bounding boxes. 
 
+## Loss Function Visualization Script
+This Folder was created in order to visualize the training metadata and more specifically chart the loss vs iterations to be visualized. The purpose of this was to determine whether or not we needed to train our model for more iterations. The script in this folder is actaully adaptable to anyone utilizing detectron2. Read the Instructions.txt file in that folder if you are interested.
