@@ -33,12 +33,12 @@ Pseudo labeling is the use high confidence predictions on an unlabeled dataset a
 This folder contains our script which, threshold_predictions.py, which is used to take our predictions on a set of unlabled images, pass them through our ensembling script, and then threshold them, only keeping predictions that have confidence levels above our threshold (70%). The script then turns them into Detectron2 style labels, writes it to a Json to be registered with Detectron 2, and then creates a new training folder of images. 
 
 
-## Ensembling
+### Ensembling
 This folder contains Ensemble.py, which takes the predictions csv output of the save_Predictions notebook from the BigDogModel folder, cleans the predictions to the appropriate format and passes those predictions to the Ensemble script from https://github.com/ZFTurbo/Weighted-Boxes-Fusion. You can simply pip install ensemble-boxes to utilize the script. 
 
-## mAP_Calculations
+### mAP_Calculations
 Our way of inferencing on the model. Mean average precision calculation. This folder contains our custom script which reformats our ensembled predictions on our validation set, and correct labels for the validation set to the appropriate form, and saves them to seperate text files to be used by the mAP script found on https://github.com/Cartucho/mAP
 
-## Deploy
+### Deploy
 This folder contains our final demo code. We utilized streamlit to build a user interface to interact with our system. app.py creates the front end and then pulls from appMain.py which actually passes the input image through our system and returns an output image. 
 
