@@ -26,7 +26,7 @@ This folder contains our script which, threshold_predictions.py, which is used t
 
 
 ### Ensembling
-This folder contains Ensemble.py, which takes the predictions csv output of the save_Predictions notebook from the BigDogModel folder, cleans the predictions to the appropriate format and passes those predictions to the Ensemble script from https://github.com/ZFTurbo/Weighted-Boxes-Fusion. You can simply pip install ensemble-boxes to utilize the script. 
+Ensembling is the process of combining multiple predictions from different models on the same piece of test data to generate one, ideally more accurate prediction. This folder contains Ensemble.py, which takes the predictions csv output of the save_Predictions notebook from the BigDogModel folder, cleans the predictions to the appropriate format and passes those predictions to the Ensemble script from https://github.com/ZFTurbo/Weighted-Boxes-Fusion. You can simply pip install ensemble-boxes to utilize the script. 
 
 ### mAP_Calculations
 Our way of inferencing on the model. Mean average precision calculation. This folder contains our custom script which reformats our ensembled predictions on our validation set, and correct labels for the validation set to the appropriate form, and saves them to seperate text files to be used by the mAP script found on https://github.com/Cartucho/mAP
