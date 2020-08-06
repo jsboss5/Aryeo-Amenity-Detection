@@ -1,5 +1,5 @@
 # Aryeo-Amenity-Detection
-The goal of this project is to be able to extract amenity data from household images for our employer Aryeo.com. Inspired by AirBnb's [medium article](https://medium.com/airbnb-engineering/amenity-detection-and-beyond-new-frontiers-of-computer-vision-at-airbnb-144a4441b72e) We built an object detection model by utilizing Facebook AI's Detectron2 Library, and conducted transfer learning on a Retinanet model found in the model zoo library. See the descriptions of our workspace below. Most of our work was conducted in a Google VM Instance, so take a look at that folder. 
+The goal of this project is to be able to extract amenity data from household images for our employer Aryeo.com. Inspired by AirBnb's [medium article](https://medium.com/airbnb-engineering/amenity-detection-and-beyond-new-frontiers-of-computer-vision-at-airbnb-144a4441b72e) We built an object detection model by utilizing Facebook AI's [Detectron2 Library](https://github.com/facebookresearch/detectron2), and conducted transfer learning on a Retinanet model found in the model zoo library. See the descriptions of our workspace below. Most of our work was conducted in a Google VM Instance, so take a look at that folder. 
 
 ## Parent Directory
 We contain all of our work done in google colab (Before we set up a google cloud virtual machine) 
@@ -32,5 +32,5 @@ This folder contains Ensemble.py, which takes the predictions csv output of the 
 Our way of inferencing on the model. Mean average precision calculation. This folder contains our custom script which reformats our ensembled predictions on our validation set, and correct labels for the validation set to the appropriate form, and saves them to seperate text files to be used by the mAP script found on https://github.com/Cartucho/mAP
 
 ### Deploy
-This folder contains our final demo code. We utilized streamlit to build a user interface to interact with our system. app.py creates the front end and then pulls from appMain.py which actually passes the input image through our system and returns an output image. 
+This folder contains our final demo code. We utilized streamlit to build a user interface to interact with our system. app.py creates the front end and then pulls from appMain.py which actually passes the input image through our system and returns an output data and image with bounding boxes. 
 
