@@ -1,17 +1,9 @@
 # Aryeo-Amenity-Detection
-Almost all of the work done on this project is contained in the Google VM folder.  
+The goal of this project is to be able to extract amenity data from household images for our employer Aryeo.com. Inspired by AirBnb's [medium article](https://medium.com/airbnb-engineering/amenity-detection-and-beyond-new-frontiers-of-computer-vision-at-airbnb-144a4441b72e) We built an object detection model utilizing  
 
 ## Parent Directory
 We contain all of our work done in google colab (Before we set up a google cloud virtual machine) 
-
-#### Airbnb_Rep.ipynp
-This Notebook is a our first training Notebook of a small model
-
-#### Airbnb_rep_Data_cleaning.ipynb
-Shows Data cleaning process of changing OpenImages labels to Detectron2 labels
-
-#### Detectron2-Small-model_Tutorial.ipynb
-We learned about how to use Detectron 2 by following the tutorial. This is that Notebook
+The Airbnb_Rep.ipynp Notebook is a our first training Notebook of a small model.The Airbnb_rep_Data_cleaning.ipynb shows data cleaning process of changing OpenImages labels to Detectron2 labels. The Detectron2-Small-model_Tutorial.ipynb is the tutiral we followed to learn about how to use Detectron2. 
 
  
 ## GoogleVM Folder
