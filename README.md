@@ -20,7 +20,7 @@ This folder contains the image download and training notebooks for all 30 classe
 
 
 #### pseudoLabeling
-Pseudo labeling is the use of high confidence predictions, obtained by passing an unlabeled dataset through the model as labels for those images to then be used to retrain the model. It is a way of generating more labeled data to train the model and hopefully increase the accuracy.
+Pseudo labeling is the use of high confidence predictions, obtained by passing an unlabeled dataset through the model, as labels for those images to then be used to retrain the model. It is a way of generating more labeled data to train the model and hopefully increase the accuracy.
 
 This folder contains our script, threshold_predictions.py, which is used to take our predictions on a set of unlabled images, pass them through our ensembling script, and then threshold them, only keeping predictions that have confidence levels above our threshold (70%). The script then turns them into Detectron2 style labels, dumps it to a Json to be registered with Detectron2, and then creates a new training folder of images. 
 
