@@ -10,7 +10,7 @@ The Airbnb_Rep.ipynp notebook is a our first training Notebook of a small model.
 This folder contains all of our training notebooks, data collection notebooks, and data cleaning scripts.
 
 ### Small Model
-Contains the training notebook and image download notebook for our small model. It was trained on only one class of ammenity data, the coffemaker class. We wanted to ensure our data cleaning worked, and that loss decreased as we trained. Basically, we ensured that our workflow was effective.
+Contains the training notebook and image download notebook for our small model. It was trained on only one class of ammenity data, the coffeemaker class. We wanted to ensure our data cleaning worked, and that loss decreased as we trained. Basically, we ensured that our workflow was effective.
 
 ### Medium Test Model
 Contains the experimentaton notebook, in which we tested 7 different pre-trained models to determine the one we would conduct transfer learning on. We tested both Retinanet and R-CNN models. We found that the Retinanet_R_101_3x model was the best.
