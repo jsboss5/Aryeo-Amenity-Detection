@@ -1,38 +1,38 @@
 # Aryeo-Amenity-Detection
-The goal of this project is to be able to extract amenity data from household images for our employer [Aryeo](https://www.aryeo.com/). Inspired by AirBnb's [medium article](https://medium.com/airbnb-engineering/amenity-detection-and-beyond-new-frontiers-of-computer-vision-at-airbnb-144a4441b72e) We built an object detection model by utilizing Facebook AI's [Detectron2 Library](https://github.com/facebookresearch/detectron2), and conducted transfer learning on a Retinanet model found in the model zoo library. See the descriptions of our workspace below. Most of our work was conducted in a Google VM Instance, so take a look at that folder. 
+The goal of this project was to develop an object detection model that is cabale of extracting amenity data from household images. We were employed by [Aryeo](https://www.aryeo.com/). Inspired by AirBnb's [medium article,](https://medium.com/airbnb-engineering/amenity-detection-and-beyond-new-frontiers-of-computer-vision-at-airbnb-144a4441b72e) we built an object detection model by utilizing Facebook AI's [Detectron2 Library.](https://github.com/facebookresearch/detectron2) More specifically, we conducted transfer learning on a Retinanet model found in the Detectron2 model zoo library. See the descriptions of our workspace below to navigate the repository. Most of our work was conducted in a Google VM Instance, so take a look at that folder. Also, note that unfortuantely due to propietary information, we are not able to share the actual models themselves. They are also too large to include on github.
 
 ## Parent Directory
-The three files found in the parent directory are our initial project notebooks done in Google Colab. (Before we set up a google cloud virtual machine) 
-The Airbnb_Rep.ipynp Notebook is a our first training Notebook of a small model.The Airbnb_rep_Data_cleaning.ipynb shows data cleaning process of changing OpenImages labels to Detectron2 labels. The Detectron2-Small-model_Tutorial.ipynb is the tutiral we followed to learn about how to use Detectron2. 
+The three files found in the parent directory are our initial project notebooks completed in Google Colab. This was essentially our playground before we started seriously training our model.
+The Airbnb_Rep.ipynp notebook is a our first training Notebook of a small model. The Airbnb_rep_Data_cleaning.ipynb notebook shows our data cleaning process of changing "Open Images" (An open source dataset) style labels to fit with Detectron2. The Detectron2-Small-model_Tutorial.ipynb is the initial tutorial we followed to learn about how to train Detectron2 models on custom datasets. 
 
  
 ## GoogleVM Folder
-This Folder contains all of our Training Notebooks, Data collection notebooks, and data cleaning Scripts.
+This folder contains all of our training notebooks, data collection notebooks, and data cleaning scripts.
 
 ### Small Model
-Contains the training notebook and image download NB for our small model, trained on one class of image. (Coffeemaker)
+Contains the training notebook and image download notebook for our small model. It was trained on only one class of ammenity data, the coffemaker class. We wanted to ensure our data cleaning worked, and that loss decreased as we trained. Basically, we ensured that our workflow was effective.
 
 ### Medium Test Model
-Contains the experimentaton notebook, in which we tested 7 different pretrained models to determine the one we would conduct transfer learning on. We found that the Retinanet_R_101_3x model was the best.
+Contains the experimentaton notebook, in which we tested 7 different pre-trained models to determine the one we would conduct transfer learning on. We tested both Retinanet and R-CNN models. We found that the Retinanet_R_101_3x model was the best.
 
 ### bigDogModel
-This folder contains the image download and training notebooks similar for all 30 classes of amenities. The Save_Predictions notebook is used to save predictions from a model into a csv file that is used for inferencing. It also includes a visualization notebook which visualizes predictions that we have passed through our ensembling script... (see next later section on Ensembling)
+This folder contains the image download and training notebooks for all 30 classes of amenities. The Save_Predictions notebook is used to save predictions from a model into a csv file that is used for inferencing. This directory also includes a visualization notebook which visualizes predictions that we have passed through our ensembling script... (see  later section on ensembling)
 
 
 #### pseudoLabeling
-Pseudo labeling is the use high confidence predictions on an unlabeled dataset as labels for those images to then be used to retrain the model. It is a way of generating more labeled data
+Pseudo labeling is the use of high confidence predictions, obtained by passing an unlabeled dataset through the model as labels for those images to then be used to retrain the model. It is a way of generating more labeled data to train the model and hopefully increase the accuracy.
 
-This folder contains our script which, threshold_predictions.py, which is used to take our predictions on a set of unlabled images, pass them through our ensembling script, and then threshold them, only keeping predictions that have confidence levels above our threshold (70%). The script then turns them into Detectron2 style labels, writes it to a Json to be registered with Detectron 2, and then creates a new training folder of images. 
+This folder contains our script, threshold_predictions.py, which is used to take our predictions on a set of unlabled images, pass them through our ensembling script, and then threshold them, only keeping predictions that have confidence levels above our threshold (70%). The script then turns them into Detectron2 style labels, dumps it to a Json to be registered with Detectron2, and then creates a new training folder of images. 
 
 
 ### Ensembling
 Ensembling is the process of combining multiple predictions from different models on the same piece of test data to generate one, ideally more accurate prediction. This folder contains Ensemble.py, which takes the predictions csv output of the save_Predictions notebook from the BigDogModel folder, cleans the predictions to the appropriate format and passes those predictions to the Ensemble script from https://github.com/ZFTurbo/Weighted-Boxes-Fusion. You can simply pip install ensemble-boxes to utilize the script. 
 
 ### mAP_Calculations
-Our way of inferencing on the model. Mean average precision calculation. This folder contains our custom script which reformats our ensembled predictions on our validation set, and correct labels for the validation set to the appropriate form, and saves them to seperate text files to be used by the mAP script found on https://github.com/Cartucho/mAP
+As is standard with in object detectron, Mean average precision was our main inferencing metric. While we were able to simply use the cocoEvaluator's mean average precision calculator on a single model, in order to inference on our ensembled system, we needed to generate a different way of measureing mAP. This folder contains our custom script which reformats our ensembled predictions on our validation set, reformats the validation labels, and saves both to seperate text files to be used by the mAP script found on https://github.com/Cartucho/mAP
 
 ### Deploy
-This folder contains our final demo code. We utilized streamlit to build a user interface to interact with our system. app.py creates the front end and then pulls from appMain.py which actually passes the input image through our system and returns an output data and image with bounding boxes. 
+This folder contains our final demo code. We utilized streamlit to build a user interface to interact with our system. The file, app.py, creates the front end that interacts with appMain.py. This file is responsible for passing the input image through our system of models, and returning output data on the location and class of item, as well as an output image with bounding boxes. 
 
 ## Loss Function Visualization Script
-This Folder was created in order to visualize the training metadata and more specifically chart the loss vs iterations to be visualized. The purpose of this was to determine whether or not we needed to train our model for more iterations. The script in this folder is actaully adaptable to anyone utilizing detectron2. Read the Instructions.txt file in that folder if you are interested.
+This Folder was created in order to visualize the training metadata, and more specifically, visualize the loss vs iterations chart. The purpose of this was to determine whether or not we needed to train our model for more iterations. Essentially we wanted to see if the loss had flattened out over time or was it still decreasing. The script in this folder is actaully adaptable to anyone utilizing detectron2. Read the Instructions.txt file in that folder if you are interested.
